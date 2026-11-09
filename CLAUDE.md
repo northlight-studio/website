@@ -19,7 +19,10 @@ The Northlight Studio website: the studio home page and a page for each project,
 - Never commit secrets: the App Store Connect key (`*.p8`, `asc_api_key.json`), `.env`, API keys.
 
 ## CI
-`./ci.sh` is the project's whole check. `.github/workflows/ci.yml` runs exactly that on the Mac mini (the organization's self-hosted runners, labels `self-hosted, macOS, ARM64`) for every pull request and every push to `main`. Run it before pushing when you can, and say plainly when something wasn't built or tested.
+`./ci.sh` is the project's whole check. This repo is **public** (Vercel's free plan only deploys an organization's repos when they're public), so `.github/workflows/ci.yml` runs it on GitHub's own `ubuntu-latest` runners, free for public repos, never on the Mac mini: anyone can open a pull request on a public repo, and a self-hosted runner would run their code on that machine. Keep it that way. Nothing secret goes in this repo.
+
+## Deploys
+Vercel project `northlight-studio` (account yasser100ali) is linked to this repo: every push to `main` deploys production at https://northlight-studio-seven.vercel.app, and pull requests get preview deployments.
 
 ## Pull requests
 - **Merge it yourself.** When your PR is ready, merge it, squashed like the rest of `main`: `gh pr merge <n> --squash`. Don't hand it back to be merged. Ready means its checks finished green, it merges cleanly with `main`, and your own pass over the diff found nothing.
