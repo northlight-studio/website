@@ -61,7 +61,9 @@ def page(path, title, description, tab, body, download=False, index=True):
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{description}">
 <meta property="og:type" content="website">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/eye.svg" type="image/svg+xml">
+<link rel="icon" href="/eye-64.png" type="image/png" sizes="64x64">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="stylesheet" href="/styles.css">
 <script src="/theme.js"></script>
 <script src="/reveal.js" defer></script>
