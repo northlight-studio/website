@@ -10,8 +10,10 @@
   --sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
   --display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
   --sun: none; --moon: block;
+  --top: 65px;
   color-scheme: light;
 }
+@media (max-width: 700px) { :root { --top: 111px; } }
 /* Dark: when the system is dark and the visitor hasn't picked light, or when they picked dark with
    the switch (theme.js sets data-theme on <html>). */
 @media (prefers-color-scheme: dark) {
@@ -40,7 +42,10 @@ img, svg { max-width: 100%; }
 .wrap { max-width: 1040px; margin: 0 auto; padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px)); }
 
 /* Header: the studio's name, the tabs, and (on a product page) its Download button */
-.top { position: sticky; top: 0; z-index: 5; background: color-mix(in srgb, var(--bg) 88%, transparent); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+/* Pinned to the window, so it never moves: not with the page, and not when the page bounces at
+   the top. The body leaves room for it (--top is its height). */
+body { padding-top: var(--top); }
+.top { position: fixed; inset: 0 0 auto; height: var(--top); z-index: 5; background: color-mix(in srgb, var(--bg) 88%, transparent); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
 .nav { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px; padding-block: 12px; }
 .word { display: inline-flex; align-items: center; gap: 7px; font-weight: 700; font-size: 17px; letter-spacing: -.02em; justify-self: start; }
 .word .mark { flex: none; color: var(--fg); }
