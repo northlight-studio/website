@@ -1,0 +1,35 @@
+name: ci
+
+# Every project checks itself the same way: ./ci.sh, on the Mac mini (the organization's
+# self-hosted runners).
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# The Mac mini is shared by every project. A newer push to the same branch or PR makes an older run
+# moot, so it's cancelled instead of holding a runner.
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ci:
+    runs-on: [self-hosted, macOS, ARM64]
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      # launchd starts the runner with a minimal PATH that leaves out Homebrew (xcodegen lives there).
+      - name: Put Homebrew on PATH
+        run: |
+          for prefix in /opt/homebrew/bin /usr/local/bin; do
+            if [ -d "$prefix" ]; then echo "$prefix" >> "$GITHUB_PATH"; fi
+          done
+
+      - name: Run ./ci.sh
+        run: ./ci.sh

@@ -1,0 +1,11 @@
+.DS_Store
+.env
+# Secrets: the App Store Connect key lives outside the repo
+*.p8
+asc_api_key.json
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+# Node
+node_modules/
