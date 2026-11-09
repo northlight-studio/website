@@ -14,9 +14,11 @@ TABS = [("Home", "/"), ("Barricade", "/barricade"), ("Pulse", "/pulse"), ("About
 
 ICONS = """<svg class="defs" aria-hidden="true"><defs>
 <symbol id="barricade" viewBox="0 0 20 16"><rect x="4" y="3" width="2" height="12" rx="1" fill="#fff"/><rect x="14" y="3" width="2" height="12" rx="1" fill="#fff"/><rect x=".5" y="5.5" width="19" height="5" rx="1.2" fill="#FF6A13"/><path d="M3.7 6.5 2 9.5h2.3L6 6.5zm5 0L7 9.5h2.3L11 6.5zm5 0L12 9.5h2.3L16 6.5z" fill="#1D1D1F"/></symbol>
-<symbol id="pulse" viewBox="0 0 28 20"><path d="M1 11h6l3-8 5 15 4-10 2 3h6" fill="none" stroke="#1F9D55" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="eye" viewBox="0 0 100 100"><circle cx="50" cy="50" r="5.500" fill="#1C1917"/><path d="M50.0 26.0Q52.6 21.0 50.0 11.0Q47.4 21.0 50.0 26.0zM57.4 27.2Q61.4 23.2 62.1 12.9Q56.5 21.6 57.4 27.2zM64.1 30.6Q69.1 28.1 72.9 18.4Q64.9 25.0 64.1 30.6zM69.4 35.9Q75.0 35.1 81.6 27.1Q71.9 30.9 69.4 35.9zM72.8 42.6Q78.4 43.5 87.1 37.9Q76.8 38.6 72.8 42.6zM74.0 50.0Q79.0 52.6 89.0 50.0Q79.0 47.4 74.0 50.0zM72.8 57.4Q76.8 61.4 87.1 62.1Q78.4 56.5 72.8 57.4zM69.4 64.1Q71.9 69.1 81.6 72.9Q75.0 64.9 69.4 64.1zM64.1 69.4Q64.9 75.0 72.9 81.6Q69.1 71.9 64.1 69.4zM57.4 72.8Q56.5 78.4 62.1 87.1Q61.4 76.8 57.4 72.8zM52.5 73.9Q50.4 79.1 54.1 88.8Q55.6 78.6 52.5 73.9zM47.5 73.9Q44.4 78.6 45.9 88.8Q49.6 79.1 47.5 73.9zM40.2 71.9Q35.8 75.4 34.1 85.6Q40.6 77.6 40.2 71.9zM33.9 67.8Q28.7 69.8 23.9 79.0Q32.5 73.3 33.9 67.8zM29.2 62.0Q23.6 62.2 16.2 69.5Q26.2 66.8 29.2 62.0zM26.5 55.0Q21.1 53.5 11.9 58.1Q22.2 58.6 26.5 55.0zM26.1 47.5Q21.4 44.4 11.2 45.9Q20.9 49.6 26.1 47.5zM28.1 40.2Q24.6 35.8 14.4 34.1Q22.4 40.6 28.1 40.2zM32.2 33.9Q30.2 28.7 21.0 23.9Q26.7 32.5 32.2 33.9zM38.0 29.2Q37.8 23.6 30.5 16.2Q33.2 26.2 38.0 29.2z" fill="#1C1917"/></symbol>
 <symbol id="down" viewBox="0 0 14 16"><path d="M7 1v9m0 0L3 6m4 4 4-4M1 14h12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 </defs></svg>"""
+
+THEME = """<button class="theme" type="button" aria-label="Switch between light and dark"><svg class="moon" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 10.500A6.500 6.500 0 0 1 7.500 3 6.500 6.500 0 1 0 15 10.500z"/></svg><svg class="sun" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="9" cy="9" r="3.200"/><path d="M9 1.500v1.800M9 14.700v1.800M1.500 9h1.800M14.700 9h1.800M3.700 3.700l1.300 1.300M13 13l1.300 1.300M3.700 14.300 5 13M13 5l1.300-1.300"/></svg></button>"""
 
 DOWNLOAD = '<a class="button" href="/barricade/download"><svg width="14" height="16" aria-hidden="true"><use href="#down"/></svg>Download for Mac</a>'
 
@@ -47,7 +49,7 @@ APP = f"""<figure class="stage">
 def page(path, title, description, tab, body, download=False, index=True):
     current = ' aria-current="page"'
     tabs = "".join(f'<a href="{href}"{current if name == tab else ""}>{name}</a>' for name, href in TABS)
-    get = '<a class="get" href="/barricade/download">Download</a>' if download else "<span></span>"
+    get = '<a class="get" href="/barricade/download">Download</a>' if download else ""
     robots = "" if index else '\n<meta name="robots" content="noindex">'
     html = f"""<!doctype html>
 <html lang="en">
@@ -61,13 +63,14 @@ def page(path, title, description, tab, body, download=False, index=True):
 <meta property="og:type" content="website">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/styles.css">
+<script src="/theme.js"></script>
 </head>
 <body>
 {ICONS}
 <header class="top"><div class="wrap nav">
-  <a class="word" href="/"><i></i>Northlight Studio</a>
+  <a class="word" href="/"><svg class="mark" width="26" height="26" aria-hidden="true"><use href="#eye"/></svg>Northlight Studio</a>
   <nav class="tabs" aria-label="Main">{tabs}</nav>
-  {get}
+  <div class="right">{THEME}{get}</div>
 </div></header>
 
 <main>
@@ -93,7 +96,7 @@ PAGES = [
       <div class="text"><h2>Barricade</h2><p>Block the sites that pull you back. For Mac.</p><span class="more">Learn more →</span></div>
     </a>
     <a class="product" href="/pulse">
-      <div class="pic" style="background:#DDF5E6"><svg width="120" height="86" aria-hidden="true"><use href="#pulse"/></svg></div>
+      <div class="pic" style="background:#0A120E"><img src="/pulse/icon.png" alt="" width="200" height="200"></div>
       <div class="text"><h2>Pulse</h2><p>Your health and fitness in one place, with an AI coach. For iPhone.</p><span class="later">Coming soon</span></div>
     </a>
   </section>"""),
@@ -140,7 +143,7 @@ PAGES = [
     page("pulse/index.html", "Pulse · health and fitness with an AI coach",
          "Pulse keeps your workouts, meals, sleep and habits in one place, with an AI coach that knows all of it. Coming soon for iPhone.",
          "Pulse", """  <section class="wrap hero alone">
-    <span class="icon pulse"><svg width="40" height="29" aria-hidden="true"><use href="#pulse"/></svg></span>
+    <img class="icon" src="/pulse/icon.png" alt="Pulse app icon" width="68" height="68">
     <h1>Your health, in one place.</h1>
     <p class="lede">Pulse keeps your workouts, meals, sleep and habits together, with an AI coach that knows all of it. For iPhone.</p>
     <span class="soon">Coming soon</span>

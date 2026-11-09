@@ -15,7 +15,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 SITE = ROOT / "site"
 VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "source", "track", "wbr",
-        "path", "rect", "circle", "stop"}
+        "path", "rect", "circle", "ellipse", "stop", "use"}
 failures = []
 
 
