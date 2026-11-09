@@ -14,9 +14,11 @@ TABS = [("Home", "/"), ("Barricade", "/barricade"), ("Pulse", "/pulse"), ("About
 
 ICONS = """<svg class="defs" aria-hidden="true"><defs>
 <symbol id="barricade" viewBox="0 0 20 16"><rect x="4" y="3" width="2" height="12" rx="1" fill="#fff"/><rect x="14" y="3" width="2" height="12" rx="1" fill="#fff"/><rect x=".5" y="5.5" width="19" height="5" rx="1.2" fill="#FF6A13"/><path d="M3.7 6.5 2 9.5h2.3L6 6.5zm5 0L7 9.5h2.3L11 6.5zm5 0L12 9.5h2.3L16 6.5z" fill="#1D1D1F"/></symbol>
-<symbol id="pulse" viewBox="0 0 28 20"><path d="M1 11h6l3-8 5 15 4-10 2 3h6" fill="none" stroke="#1F9D55" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="mochi" viewBox="0 0 100 100"><path d="M22 92C18 50 30 26 50 26s32 24 28 66z" fill="#F3DCC8"/><path d="M30 44c6-8 34-8 40 0" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="3" stroke-linecap="round"/><ellipse cx="34" cy="64" rx="5" ry="3" fill="#F08C73" fill-opacity=".45"/><ellipse cx="66" cy="64" rx="5" ry="3" fill="#F08C73" fill-opacity=".45"/><ellipse cx="41" cy="56" rx="3.600" ry="4.400" fill="#1C1917"/><ellipse cx="59" cy="56" rx="3.600" ry="4.400" fill="#1C1917"/><circle cx="42.200" cy="54.400" r="1.200" fill="#fff"/><circle cx="60.200" cy="54.400" r="1.200" fill="#fff"/><path d="M45 64q5 4.500 10 0" fill="none" stroke="#1C1917" stroke-width="2.200" stroke-linecap="round"/></symbol>
 <symbol id="down" viewBox="0 0 14 16"><path d="M7 1v9m0 0L3 6m4 4 4-4M1 14h12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 </defs></svg>"""
+
+THEME = """<button class="theme" type="button" aria-label="Switch between light and dark"><svg class="moon" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 10.500A6.500 6.500 0 0 1 7.500 3 6.500 6.500 0 1 0 15 10.500z"/></svg><svg class="sun" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="9" cy="9" r="3.200"/><path d="M9 1.500v1.800M9 14.700v1.800M1.500 9h1.800M14.700 9h1.800M3.700 3.700l1.300 1.300M13 13l1.300 1.300M3.700 14.300 5 13M13 5l1.300-1.300"/></svg></button>"""
 
 DOWNLOAD = '<a class="button" href="/barricade/download"><svg width="14" height="16" aria-hidden="true"><use href="#down"/></svg>Download for Mac</a>'
 
@@ -47,7 +49,7 @@ APP = f"""<figure class="stage">
 def page(path, title, description, tab, body, download=False, index=True):
     current = ' aria-current="page"'
     tabs = "".join(f'<a href="{href}"{current if name == tab else ""}>{name}</a>' for name, href in TABS)
-    get = '<a class="get" href="/barricade/download">Download</a>' if download else "<span></span>"
+    get = '<a class="get" href="/barricade/download">Download</a>' if download else ""
     robots = "" if index else '\n<meta name="robots" content="noindex">'
     html = f"""<!doctype html>
 <html lang="en">
@@ -61,13 +63,14 @@ def page(path, title, description, tab, body, download=False, index=True):
 <meta property="og:type" content="website">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/styles.css">
+<script src="/theme.js"></script>
 </head>
 <body>
 {ICONS}
 <header class="top"><div class="wrap nav">
-  <a class="word" href="/"><i></i>Northlight Studio</a>
+  <a class="word" href="/"><svg class="mark" width="26" height="26" aria-hidden="true"><use href="#mochi"/></svg>Northlight Studio</a>
   <nav class="tabs" aria-label="Main">{tabs}</nav>
-  {get}
+  <div class="right">{THEME}{get}</div>
 </div></header>
 
 <main>
@@ -93,7 +96,7 @@ PAGES = [
       <div class="text"><h2>Barricade</h2><p>Block the sites that pull you back. For Mac.</p><span class="more">Learn more →</span></div>
     </a>
     <a class="product" href="/pulse">
-      <div class="pic" style="background:#DDF5E6"><svg width="120" height="86" aria-hidden="true"><use href="#pulse"/></svg></div>
+      <div class="pic" style="background:#3A2C24"><svg width="170" height="170" aria-hidden="true"><use href="#mochi"/></svg></div>
       <div class="text"><h2>Pulse</h2><p>Your health and fitness in one place, with an AI coach. For iPhone.</p><span class="later">Coming soon</span></div>
     </a>
   </section>"""),
@@ -140,7 +143,7 @@ PAGES = [
     page("pulse/index.html", "Pulse · health and fitness with an AI coach",
          "Pulse keeps your workouts, meals, sleep and habits in one place, with an AI coach that knows all of it. Coming soon for iPhone.",
          "Pulse", """  <section class="wrap hero alone">
-    <span class="icon pulse"><svg width="40" height="29" aria-hidden="true"><use href="#pulse"/></svg></span>
+    <span class="icon pulse"><svg width="68" height="68" aria-hidden="true"><use href="#mochi"/></svg></span>
     <h1>Your health, in one place.</h1>
     <p class="lede">Pulse keeps your workouts, meals, sleep and habits together, with an AI coach that knows all of it. For iPhone.</p>
     <span class="soon">Coming soon</span>
