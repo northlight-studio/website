@@ -4,44 +4,43 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Northlight Studio</title>
-<meta name="description" content="Northlight Studio makes small, careful software for keeping the habits you chose.">
+<meta name="description" content="Small, careful apps that help you keep the habits you chose.">
 <meta property="og:title" content="Northlight Studio">
-<meta property="og:description" content="Small, careful software for keeping the habits you chose.">
+<meta property="og:description" content="Small, careful apps that help you keep the habits you chose.">
 <meta property="og:type" content="website">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-<header class="wrap nav">
+<svg class="defs" aria-hidden="true"><defs>
+<symbol id="barricade" viewBox="0 0 20 16"><rect x="4" y="3" width="2" height="12" rx="1" fill="#fff"/><rect x="14" y="3" width="2" height="12" rx="1" fill="#fff"/><rect x=".5" y="5.5" width="19" height="5" rx="1.2" fill="#FF6A13"/><path d="M3.7 6.5 2 9.5h2.3L6 6.5zm5 0L7 9.5h2.3L11 6.5zm5 0L12 9.5h2.3L16 6.5z" fill="#1D1D1F"/></symbol>
+<symbol id="pulse" viewBox="0 0 28 20"><path d="M1 11h6l3-8 5 15 4-10 2 3h6" fill="none" stroke="#1F9D55" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="down" viewBox="0 0 14 16"><path d="M7 1v9m0 0L3 6m4 4 4-4M1 14h12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</defs></svg>
+<header class="top"><div class="wrap nav">
   <a class="word" href="/"><i></i>Northlight Studio</a>
-  <nav aria-label="Projects"><a href="/barricade">Barricade</a></nav>
-</header>
+  <nav class="tabs" aria-label="Main"><a href="/" aria-current="page">Home</a><a href="/barricade">Barricade</a><a href="/pulse">Pulse</a><a href="/about">About</a></nav>
+  <span></span>
+</div></header>
 
 <main>
-  <section class="wrap lead">
-    <h1 class="display">Apps for the person you're trying to be.</h1>
-    <p class="lede">Northlight Studio makes small, careful software for keeping the habits you chose: what you block, how you train, what you eat.</p>
+  <section class="wrap hero">
+    <h1>Apps for the person you're trying to be.</h1>
+    <p class="lede">Small, careful apps that help you keep the habits you chose.</p>
   </section>
 
-  <section class="wrap index" aria-labelledby="projects">
-    <h2 id="projects">Projects</h2>
-    <a class="project" href="/barricade">
-      <span class="project-icon" style="background:#1D1D1F" aria-hidden="true">
-        <svg width="32" height="26" viewBox="0 0 20 16"><rect x="4" y="3" width="2" height="12" rx="1" fill="#fff"/><rect x="14" y="3" width="2" height="12" rx="1" fill="#fff"/><rect x=".5" y="5.5" width="19" height="5" rx="1.2" fill="#FF6A13"/><path d="M3.7 6.5 2 9.5h2.3L6 6.5zm5 0L7 9.5h2.3L11 6.5zm5 0L12 9.5h2.3L16 6.5z" fill="#1D1D1F"/></svg>
-      </span>
-      <span><span class="project-name">Barricade</span><span class="project-line">A website blocker for Mac you can't switch off on a whim.</span></span>
-      <span class="pill go">Mac</span>
+  <section class="wrap apps" aria-label="Our apps">
+    <a class="product" href="/barricade">
+      <div class="pic" style="background:#1D1D1F"><svg width="110" height="88" aria-hidden="true"><use href="#barricade"/></svg></div>
+      <div class="text"><h2>Barricade</h2><p>Block the sites that pull you back. For Mac.</p><span class="more">Learn more →</span></div>
     </a>
-    <div class="project">
-      <span class="project-icon" style="background:#E9F7EE" aria-hidden="true">
-        <svg width="30" height="22" viewBox="0 0 28 20"><path d="M1 11h6l3-8 5 15 4-10 2 3h6" fill="none" stroke="#1F9D55" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </span>
-      <span><span class="project-name">Pulse</span><span class="project-line">Health and fitness on iPhone, with an AI coach that reads all of it.</span></span>
-      <span class="pill">iPhone · in beta</span>
-    </div>
+    <a class="product" href="/pulse">
+      <div class="pic" style="background:#DDF5E6"><svg width="120" height="86" aria-hidden="true"><use href="#pulse"/></svg></div>
+      <div class="text"><h2>Pulse</h2><p>Your health and fitness in one place, with an AI coach. For iPhone.</p><span class="later">Coming soon</span></div>
+    </a>
   </section>
 </main>
 
-<footer class="foot"><div class="wrap"><span>© 2026 Northlight Studio</span><a href="/barricade">Barricade</a></div></footer>
+<footer class="foot"><div class="wrap"><span>© 2026 Northlight Studio</span><a href="/about">About</a></div></footer>
 </body>
 </html>

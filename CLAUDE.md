@@ -3,10 +3,11 @@
 The Northlight Studio website: the studio home page and a page for each project, starting with Barricade. See README.md for what exists. Same owner and conventions as Pulse, Let's Go and Lyceum.
 
 ## Stack
-- Plain HTML and CSS in `site/`, no build step. Vercel serves `site/` as-is (`vercel.json`: clean URLs, so `/barricade` is `site/barricade/index.html`).
-- One stylesheet, `site/styles.css`, in the Horizon look shared with Barricade's app and block page: thin display type, one band of the barricade's stripe, the 30 dots. Light and dark follow the system.
+- Plain HTML and CSS in `site/`, no build step on Vercel. Vercel serves `site/` as-is (`vercel.json`: clean URLs, so `/barricade` is `site/barricade/index.html`).
+- **The pages are generated.** Every page shares the header (the studio's name and the tabs: Home, Barricade, Pulse, About), icons and footer, so they're written by `tools/build_pages.py` and committed. Edit pages there, run `python3 tools/build_pages.py`, and commit the result; `ci.sh` fails when `site/` is out of date. Never hand-edit the HTML in `site/`.
+- One stylesheet, `site/styles.css`, in the Calm look (round 2 of the website mocks): centered, lots of white, pill tabs, one orange button, a picture of the app. Light and dark follow the system. Copy is plain and non-technical: say what an app does for the person, never how it works underneath.
 - No inline scripts: the Content-Security-Policy in `vercel.json` blocks them. Internal links are root paths (`/barricade`).
-- Each project gets a folder: `site/<project>/index.html`. Barricade's download link is `/barricade/download`; it's a holding page until the signed, notarized installer exists, then a redirect in `vercel.json` to the file.
+- Each project gets a folder and a tab. Barricade's download link is `/barricade/download`; it's a holding page until the signed, notarized installer exists, then a redirect in `vercel.json` to the file.
 - `tests/check_site.py` (run by `ci.sh`) checks every page's structure and metadata and that every internal link resolves.
 
 ## Rules
