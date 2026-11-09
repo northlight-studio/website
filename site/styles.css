@@ -42,8 +42,8 @@ img, svg { max-width: 100%; }
 /* Header: the studio's name, the tabs, and (on a product page) its Download button */
 .top { position: sticky; top: 0; z-index: 5; background: color-mix(in srgb, var(--bg) 88%, transparent); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
 .nav { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px; padding-block: 12px; }
-.word { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 18px; letter-spacing: -.02em; justify-self: start; }
-.word .mark { flex: none; color: var(--fg); margin-block: -4px; }
+.word { display: inline-flex; align-items: center; gap: 7px; font-weight: 700; font-size: 17px; letter-spacing: -.02em; justify-self: start; }
+.word .mark { flex: none; color: var(--fg); }
 .tabs { display: flex; gap: 2px; padding: 4px; border-radius: 999px; background: var(--tabs); }
 .tabs a { font: 500 14px/1 var(--sans); padding: 9px 16px; border-radius: 999px; color: var(--fg-2); }
 .tabs a:hover { color: var(--fg); }
@@ -130,16 +130,20 @@ figure { margin: 0; }
   .hero { padding-top: 48px; }
 }
 
-/* The eye, Northlight's mark, drawn large. It takes the text colour: dark on light, white on dark. */
-.eye { color: var(--fg); flex: none; }
-.hero.home { padding-top: 44px; gap: 14px; }
-.hero.home .eye { width: clamp(150px, 24vw, 220px); height: clamp(150px, 24vw, 220px); margin-bottom: 4px; }
+/* Scrolling down: what starts below the screen eases up into place as it arrives (reveal.js adds
+   and removes .below). Siblings follow one another by a beat. */
+[data-reveal] { transition: opacity .7s ease, transform .8s cubic-bezier(.2, .7, .2, 1); }
+[data-reveal].below { opacity: 0; transform: translateY(28px); }
+.stage[data-reveal].below { transform: translateY(28px) scale(.97); }
+[data-reveal]:nth-child(2) { transition-delay: .09s; }
+[data-reveal]:nth-child(3) { transition-delay: .18s; }
+@media (prefers-reduced-motion: reduce) { [data-reveal] { transition: none; } }
+
+.hero.home { padding-top: 84px; }
 
 /* Home: the apps */
 .apps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; padding-block: 56px 28px; }
-.product { border-radius: 28px; overflow: hidden; background: var(--soft); display: grid; grid-template-rows: auto 1fr; transition: transform .2s ease; }
-a.product:hover { transform: translateY(-3px); }
-@media (prefers-reduced-motion: reduce) { a.product:hover { transform: none; } }
+.product { border-radius: 28px; overflow: hidden; background: var(--soft); display: grid; grid-template-rows: auto 1fr; }
 .product .pic { height: 270px; display: grid; place-items: center; overflow: hidden; position: relative; }
 .product .pic.barricade { background: #1D1D1F; }
 .product .pic.barricade::after { content: ""; position: absolute; inset: auto 0 0; height: 10px; background: repeating-linear-gradient(-45deg, var(--stripe) 0 14px, #1D1D1F 14px 28px); }
@@ -156,8 +160,7 @@ a.product:hover { transform: translateY(-3px); }
 @media (max-width: 720px) { .apps { grid-template-columns: minmax(0, 1fr); } .product .pic { height: 220px; } }
 
 /* About */
-.name { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 48px; margin-top: 56px; padding-block: 48px; padding-inline: 48px; background: var(--soft); border-radius: 28px; max-width: 992px; }
-.name .eye { width: 190px; height: 190px; }
+.name { margin-top: 56px; padding-block: 48px; padding-inline: 48px; background: var(--soft); border-radius: 28px; max-width: 992px; }
 .name h2, .ways h2, .list h2 { margin: 0 0 10px; font: 700 28px/1.15 var(--display); letter-spacing: -.02em; }
 .name p { margin: 0 0 10px; color: var(--fg-2); font-size: 17px; max-width: 48ch; }
 .name p:last-child { margin-bottom: 0; }
@@ -173,10 +176,7 @@ a.product:hover { transform: translateY(-3px); }
 .line .go { color: var(--fg-3); font-size: 20px; }
 .line:hover .go { color: var(--orange-ink); }
 .icon.small { width: 48px; height: 48px; border-radius: 12px; box-shadow: none; }
-@media (max-width: 720px) {
-  .name { grid-template-columns: minmax(0, 1fr); justify-items: center; text-align: center; gap: 20px; padding-inline: 24px; margin-inline: 16px; }
-  .name .eye { width: 140px; height: 140px; }
-}
+@media (max-width: 720px) { .name { padding-inline: 24px; margin-inline: 16px; } }
 
 /* Footer */
 .foot { border-top: 1px solid var(--line); }
