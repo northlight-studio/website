@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Northlight</title>
-<meta name="description" content="Northlight makes calm apps that help you keep the habits you chose.">
+<meta name="description" content="Northlight makes calm apps for the things you keep meaning to do.">
 <meta property="og:title" content="Northlight">
-<meta property="og:description" content="Northlight makes calm apps that help you keep the habits you chose.">
+<meta property="og:description" content="Northlight makes calm apps for the things you keep meaning to do.">
 <meta property="og:type" content="website">
 <link rel="icon" href="/eye.svg" type="image/svg+xml">
 <link rel="icon" href="/eye-64.png" type="image/png" sizes="64x64">
@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="/styles.css">
 <script src="/theme.js"></script>
 <script src="/reveal.js" defer></script>
+<script src="/nav.js" defer></script>
 </head>
 <body>
 <svg class="defs" aria-hidden="true"><defs>
@@ -23,25 +24,47 @@
 </defs></svg>
 <header class="top"><div class="wrap nav">
   <a class="word" href="/"><svg class="mark" width="26" height="26" aria-hidden="true"><use href="#eye"/></svg>Northlight</a>
-  <nav class="tabs" aria-label="Main"><a href="/" aria-current="page">Home</a><a href="/barricade">Barricade</a><a href="/pulse">Pulse</a><a href="/about">About</a></nav>
+  <nav class="tabs" aria-label="Main"><a href="/" aria-current="page">Home</a><a href="/pulse">Pulse</a><a href="/barricade">Barricade</a><a href="/runway">Runway</a><a href="/lyceum">Lyceum</a><a href="/lets-go">Let's Go</a><a href="/parcel">Parcel</a><a href="/about">About</a></nav>
   <div class="right"><button class="theme" type="button" aria-label="Switch between light and dark"><svg class="moon" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 10.500A6.500 6.500 0 0 1 7.500 3 6.500 6.500 0 1 0 15 10.500z"/></svg><svg class="sun" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="9" cy="9" r="3.200"/><path d="M9 1.500v1.800M9 14.700v1.800M1.500 9h1.800M14.700 9h1.800M3.700 3.700l1.300 1.300M13 13l1.300 1.300M3.700 14.300 5 13M13 5l1.300-1.300"/></svg></button></div>
 </div></header>
 
 <main>
   <section class="wrap hero home">
     <h1>Apps for the person you're trying to be.</h1>
-    <p class="lede">Northlight makes calm apps that help you keep the habits you chose.</p>
+    <p class="lede">Northlight makes calm apps for the things you keep meaning to do: train, save, read, get out of the house.</p>
   </section>
 
   <section class="wrap apps" aria-label="Apps">
-    <a class="product" href="/barricade" data-reveal>
-      <div class="pic barricade"><svg width="120" height="96" aria-hidden="true"><use href="#barricade"/></svg></div>
-      <div class="text"><span class="for">For Mac</span><h2>Barricade</h2><p>Block the sites that pull you back, in every browser. It stays on through the nights you wish it wouldn't.</p><span class="more">See Barricade →</span></div>
-    </a>
     <a class="product" href="/pulse" data-reveal>
       <div class="pic" style="background:#0A120E"><img src="/pulse/icon.png" alt="" width="230" height="230"></div>
       <div class="text"><span class="for">For iPhone · coming soon</span><h2>Pulse</h2><p>Your workouts, meals, sleep and habits in one place, with an AI coach that knows all of it.</p><span class="more">See Pulse →</span></div>
     </a>
+    <a class="product" href="/barricade" data-reveal>
+      <div class="pic barricade"><svg width="120" height="96" aria-hidden="true"><use href="#barricade"/></svg></div>
+      <div class="text"><span class="for">For Mac</span><h2>Barricade</h2><p>Block the sites that pull you back, in every browser. It stays on through the nights you wish it wouldn't.</p><span class="more">See Barricade →</span></div>
+    </a>
+  </section>
+
+  <section class="wrap works" aria-labelledby="works">
+    <h2 id="works" data-reveal>In the works</h2>
+    <div class="apps four">
+    <a class="product" href="/runway" data-reveal>
+      <div class="pic" style="background:#070A12"><img src="/runway/icon.png" alt="" width="150" height="150"></div>
+      <div class="text"><span class="for">For iPhone</span><h2>Runway</h2><p>What you earn, spend and invest in one place, and your next good move with money.</p><span class="more">See Runway →</span></div>
+    </a>
+    <a class="product" href="/lyceum" data-reveal>
+      <div class="pic" style="background:#0B0F0E"><img src="/lyceum/icon.png" alt="" width="150" height="150"></div>
+      <div class="text"><span class="for">For iPhone</span><h2>Lyceum</h2><p>A museum of books: halls to wander, short courses, and the lines worth keeping.</p><span class="more">See Lyceum →</span></div>
+    </a>
+    <a class="product" href="/lets-go" data-reveal>
+      <div class="pic" style="background:#1A2347"><img src="/lets-go/icon.png" alt="" width="150" height="150"></div>
+      <div class="text"><span class="for">For iPhone</span><h2>Let's Go</h2><p>A live map of what's on tonight within a walk, and the one thing worth going to.</p><span class="more">See Let's Go →</span></div>
+    </a>
+    <a class="product" href="/parcel" data-reveal>
+      <div class="pic" style="background:#1F292E"><img src="/parcel/icon.png" alt="" width="150" height="150"></div>
+      <div class="text"><span class="for">For the web and iPhone</span><h2>Parcel</h2><p>Describe the home you want. See it designed, checked and priced.</p><span class="more">See Parcel →</span></div>
+    </a>
+    </div>
   </section>
 
   <section class="wrap closing" data-reveal>

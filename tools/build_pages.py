@@ -8,9 +8,12 @@ Edit the pages here, then run:  python3 tools/build_pages.py
 import sys
 from pathlib import Path
 
+import pictures
+
 SITE = Path(__file__).resolve().parent.parent / "site"
 
-TABS = [("Home", "/"), ("Barricade", "/barricade"), ("Pulse", "/pulse"), ("About", "/about")]
+TABS = [("Home", "/"), ("Pulse", "/pulse"), ("Barricade", "/barricade"), ("Runway", "/runway"), ("Lyceum", "/lyceum"),
+        ("Let's Go", "/lets-go"), ("Parcel", "/parcel"), ("About", "/about")]
 
 ICONS = """<svg class="defs" aria-hidden="true"><defs>
 <symbol id="barricade" viewBox="0 0 20 16"><rect x="4" y="3" width="2" height="12" rx="1" fill="#fff"/><rect x="14" y="3" width="2" height="12" rx="1" fill="#fff"/><rect x=".5" y="5.5" width="19" height="5" rx="1.2" fill="#FF6A13"/><path d="M3.7 6.5 2 9.5h2.3L6 6.5zm5 0L7 9.5h2.3L11 6.5zm5 0L12 9.5h2.3L16 6.5z" fill="#1D1D1F"/></symbol>
@@ -23,27 +26,39 @@ THEME = """<button class="theme" type="button" aria-label="Switch between light 
 DOWNLOAD = '<a class="button" href="/barricade/download"><svg width="14" height="16" aria-hidden="true"><use href="#down"/></svg>Download for Mac</a>'
 
 
-def dots():
-    held = {13, 22, 26, 28}
-    return "".join(f'<i class="{"held" if i in held else "on"}"></i>' if i >= 7 else "<i></i>" for i in range(30))
+def project(slug, name, title, description, headline, lede, status, picture, cards, fine=""):
+    """A project's page: its icon, what it does, a picture of it, and three things it does for you."""
+    three = "".join(f'<div class="card" data-reveal><h2>{head}</h2><p>{text}</p></div>' for head, text in cards)
+    note = f'\n    <span class="fine">{fine}</span>' if fine else ""
+    return page(f"{slug}/index.html", title, description, name, f"""  <section class="wrap hero">
+    <img class="icon" src="/{slug}/icon.png" alt="{name} app icon" width="68" height="68">
+    <h1>{headline}</h1>
+    <p class="lede">{lede}</p>
+    <span class="soon">{status}</span>{note}
+  </section>
+
+  <div class="wrap">
+    {picture}
+  </div>
+
+  <section class="wrap three" aria-label="What {name} does">
+    {three}
+  </section>""")
 
 
-APP = f"""<figure class="stage" data-reveal>
-      <div class="app" role="img" aria-label="The Barricade app: 23 days protected, the last 30 days as dots, and the list of blocked sites">
-        <div class="app-stripe"></div>
-        <div class="app-bar"><div class="lights"><i></i><i></i><i></i></div><b>Barricade</b></div>
-        <div class="app-body" aria-hidden="true">
-          <div class="app-left"><div class="app-number">23</div><strong>days protected</strong><small>since October 18</small><div class="dots">{dots()}</div></div>
-          <div class="app-right"><strong>Blocked</strong><div class="app-add">+ Add a site</div>
-            <div class="app-row"><b>Adult content</b><span>Automatic</span></div>
-            <div class="app-row">reddit.com<span>3 this month</span></div>
-            <div class="app-row">twitch.tv</div>
-            <div class="app-row">nfl.com</div>
-          </div>
-        </div>
-      </div>
-      <figcaption>The Barricade app, with sample data</figcaption>
-    </figure>"""
+def card(slug, name, status, text, background, small=False):
+    """A project's card on the home page: its icon, fading into the card, and a line about it."""
+    size = 150 if small else 230
+    return f"""<a class="product" href="/{slug}" data-reveal>
+      <div class="pic" style="background:{background}"><img src="/{slug}/icon.png" alt="" width="{size}" height="{size}"></div>
+      <div class="text"><span class="for">{status}</span><h2>{name}</h2><p>{text}</p><span class="more">See {name} →</span></div>
+    </a>"""
+
+
+def line(slug, name, text):
+    """A project's row in the About page's list."""
+    return (f'<a class="line" href="/{slug}" data-reveal><img class="icon small" src="/{slug}/icon.png" alt="" width="48" height="48">'
+            f'<span><b>{name}</b><span>{text}</span></span><span class="go">→</span></a>')
 
 
 def page(path, title, description, tab, body, download=False, index=True):
@@ -67,6 +82,7 @@ def page(path, title, description, tab, body, download=False, index=True):
 <link rel="stylesheet" href="/styles.css">
 <script src="/theme.js"></script>
 <script src="/reveal.js" defer></script>
+<script src="/nav.js" defer></script>
 </head>
 <body>
 {ICONS}
@@ -88,20 +104,27 @@ def page(path, title, description, tab, body, download=False, index=True):
 
 
 PAGES = [
-    page("index.html", "Northlight", "Northlight makes calm apps that help you keep the habits you chose.", "Home", """  <section class="wrap hero home">
+    page("index.html", "Northlight", "Northlight makes calm apps for the things you keep meaning to do.", "Home", f"""  <section class="wrap hero home">
     <h1>Apps for the person you're trying to be.</h1>
-    <p class="lede">Northlight makes calm apps that help you keep the habits you chose.</p>
+    <p class="lede">Northlight makes calm apps for the things you keep meaning to do: train, save, read, get out of the house.</p>
   </section>
 
   <section class="wrap apps" aria-label="Apps">
+    {card("pulse", "Pulse", "For iPhone · coming soon", "Your workouts, meals, sleep and habits in one place, with an AI coach that knows all of it.", "#0A120E")}
     <a class="product" href="/barricade" data-reveal>
       <div class="pic barricade"><svg width="120" height="96" aria-hidden="true"><use href="#barricade"/></svg></div>
       <div class="text"><span class="for">For Mac</span><h2>Barricade</h2><p>Block the sites that pull you back, in every browser. It stays on through the nights you wish it wouldn't.</p><span class="more">See Barricade →</span></div>
     </a>
-    <a class="product" href="/pulse" data-reveal>
-      <div class="pic" style="background:#0A120E"><img src="/pulse/icon.png" alt="" width="230" height="230"></div>
-      <div class="text"><span class="for">For iPhone · coming soon</span><h2>Pulse</h2><p>Your workouts, meals, sleep and habits in one place, with an AI coach that knows all of it.</p><span class="more">See Pulse →</span></div>
-    </a>
+  </section>
+
+  <section class="wrap works" aria-labelledby="works">
+    <h2 id="works" data-reveal>In the works</h2>
+    <div class="apps four">
+    {card("runway", "Runway", "For iPhone", "What you earn, spend and invest in one place, and your next good move with money.", "#070A12", small=True)}
+    {card("lyceum", "Lyceum", "For iPhone", "A museum of books: halls to wander, short courses, and the lines worth keeping.", "#0B0F0E", small=True)}
+    {card("lets-go", "Let's Go", "For iPhone", "A live map of what's on tonight within a walk, and the one thing worth going to.", "#1A2347", small=True)}
+    {card("parcel", "Parcel", "For the web and iPhone", "Describe the home you want. See it designed, checked and priced.", "#1F292E", small=True)}
+    </div>
   </section>
 
   <section class="wrap closing" data-reveal>
@@ -120,7 +143,7 @@ PAGES = [
   </section>
 
   <div class="wrap">
-    {APP}
+    {pictures.BARRICADE}
   </div>
 
   <section class="wrap three" aria-label="Why Barricade">
@@ -148,19 +171,60 @@ PAGES = [
     <a class="button quiet" href="/barricade">Back to Barricade</a>
   </section>""", index=False),
 
-    page("pulse/index.html", "Pulse · health and fitness with an AI coach",
-         "Pulse keeps your workouts, meals, sleep and habits in one place, with an AI coach that knows all of it. Coming soon for iPhone.",
-         "Pulse", """  <section class="wrap hero alone">
-    <img class="icon" src="/pulse/icon.png" alt="Pulse app icon" width="68" height="68">
-    <h1>Your health, in one place.</h1>
-    <p class="lede">Pulse keeps your workouts, meals, sleep and habits together, with an AI coach that knows all of it. For iPhone.</p>
-    <span class="soon">Coming soon</span>
-  </section>"""),
+    project("pulse", "Pulse", "Pulse · health and fitness with an AI coach",
+            "Pulse keeps your workouts, meals, sleep and habits in one place, with an AI coach that knows all of it. Coming soon for iPhone.",
+            "Your health, in one place.",
+            "Pulse keeps your workouts, meals, sleep and habits together, with an AI coach that knows all of it. For iPhone.",
+            "Coming soon", pictures.PULSE, [
+                ("Everything together", "Log a workout or a meal in a few taps. Sleep, steps and heart rate come in from Apple Health, so nothing is typed twice."),
+                ("A coach that knows you", "Ask anything about your own numbers and get a straight answer, drawn from everything you've logged."),
+                ("On your wrist", "On Apple Watch, Pulse counts your reps and times your rest, so the phone can stay in your bag."),
+            ]),
 
-    page("about/index.html", "About · Northlight", "Northlight makes calm apps that help you keep the habits you chose.",
-         "About", """  <section class="wrap hero">
+    project("runway", "Runway", "Runway · grow what you're worth",
+            "Runway shows what you earn, spend and invest in one place, and works out your next good move with you. In the works for iPhone.",
+            "Grow what you're worth.",
+            "Runway shows what you earn, spend and invest in one place, and works out your next good move with you. For iPhone.",
+            "In the works", pictures.RUNWAY, [
+                ("See the whole picture", "Your net worth, and what moved it this month: what you earned, what you spent, and what your investments did."),
+                ("Find the next move", "Cut a bill you forgot about, ask for the raise, put idle cash to work. Each move shows what it's worth in a year."),
+                ("Head for the job you want", "Lay out the path to the job you want, and see what each step along it does to your net worth."),
+            ], fine="Runway only reads your accounts. It can't move your money."),
+
+    project("lyceum", "Lyceum", "Lyceum · a museum of books",
+            "Lyceum is a museum of books: walk the halls of every literary age, take short courses, and keep the lines that stay with you. In the works for iPhone.",
+            "A museum of books.",
+            "Walk the halls of every literary age, take short courses with an AI guide, read the great books with other people, and keep the lines that stay with you. For iPhone.",
+            "In the works", pictures.LYCEUM, [
+                ("Halls to wander", "Each age of literature has a hall of its own: the Russians, the Gothic, the Romantics. Start anywhere."),
+                ("Short courses", "Lessons you can finish in one sitting, with a guide to ask when something doesn't land."),
+                ("Lines worth keeping", "Collect the sentences that stay with you, and hang them on a wall of your own."),
+            ]),
+
+    project("lets-go", "Let's Go", "Let's Go · what's on tonight, a walk away",
+            "Let's Go is a live map of things to do within walking distance, and tells you the one worth leaving the house for. In the works for iPhone.",
+            "See what's on tonight, a walk away.",
+            "Let's Go is a live map of things to do within walking distance: pickup games, runs, shows, and neighbors cooking. It tells you the one worth leaving the house for. For iPhone.",
+            "In the works", pictures.LETS_GO, [
+                ("A map of tonight", "Everything on in the next few hours, close enough to walk to."),
+                ("One good suggestion", "Wren, the guide, learns what you actually show up for and picks the one thing worth going to."),
+                ("Phone away", "Once you're out, it gets out of the way: directions as a buzz in your pocket, and the night written up for you in the morning."),
+            ]),
+
+    project("parcel", "Parcel", "Parcel · from an idea to a house you can build",
+            "Describe the home you want. Parcel designs it, checks that it can be built, prices it, and finds land it fits on. In the works.",
+            "From an idea to a house you can build.",
+            "Describe the home you want. Parcel designs it, checks that it can be built, prices it, and finds land it fits on. For the web and iPhone.",
+            "In the works", pictures.PARCEL, [
+                ("Describe it", "Say what you want in your own words, or add a sketch. Parcel draws real floor plans and a picture of every room."),
+                ("Know what it costs", "A price for each part of the build, where you plan to build it, and the changes that would save the most."),
+                ("Know what it takes", "The permits, the people and the schedule, in a brief you can hand to an architect."),
+            ], fine="Early numbers, marked as early. They don't replace an architect or a builder's bid."),
+
+    page("about/index.html", "About · Northlight", "Northlight makes calm apps for the things you keep meaning to do.",
+         "About", f"""  <section class="wrap hero">
     <h1>Calm tools for the habits you chose.</h1>
-    <p class="lede">Northlight makes apps for the everyday things that are hard to stick to: what you block, how you train, what you eat.</p>
+    <p class="lede">Northlight makes apps for the everyday things that are hard to stick to: how you train, what you spend, what you read, what you block.</p>
   </section>
 
   <section class="wrap name" data-reveal>
@@ -182,8 +246,12 @@ PAGES = [
 
   <section class="wrap list" aria-labelledby="apps">
     <h2 id="apps" data-reveal>The apps</h2>
+    {line("pulse", "Pulse", "Your health in one place, with an AI coach. For iPhone, coming soon.")}
     <a class="line" href="/barricade" data-reveal><span class="icon barricade small"><svg width="26" height="21" aria-hidden="true"><use href="#barricade"/></svg></span><span><b>Barricade</b><span>Block the sites that pull you back. For Mac.</span></span><span class="go">→</span></a>
-    <a class="line" href="/pulse" data-reveal><img class="icon small" src="/pulse/icon.png" alt="" width="48" height="48"><span><b>Pulse</b><span>Your health in one place, with an AI coach. For iPhone, coming soon.</span></span><span class="go">→</span></a>
+    {line("runway", "Runway", "Grow what you're worth. For iPhone, in the works.")}
+    {line("lyceum", "Lyceum", "A museum of books. For iPhone, in the works.")}
+    {line("lets-go", "Let's Go", "What's on tonight, a walk away. For iPhone, in the works.")}
+    {line("parcel", "Parcel", "From an idea to a house you can build. In the works.")}
   </section>"""),
 ]
 

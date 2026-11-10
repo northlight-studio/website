@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="/styles.css">
 <script src="/theme.js"></script>
 <script src="/reveal.js" defer></script>
+<script src="/nav.js" defer></script>
 </head>
 <body>
 <svg class="defs" aria-hidden="true"><defs>
@@ -23,16 +24,40 @@
 </defs></svg>
 <header class="top"><div class="wrap nav">
   <a class="word" href="/"><svg class="mark" width="26" height="26" aria-hidden="true"><use href="#eye"/></svg>Northlight</a>
-  <nav class="tabs" aria-label="Main"><a href="/">Home</a><a href="/barricade">Barricade</a><a href="/pulse" aria-current="page">Pulse</a><a href="/about">About</a></nav>
+  <nav class="tabs" aria-label="Main"><a href="/">Home</a><a href="/pulse" aria-current="page">Pulse</a><a href="/barricade">Barricade</a><a href="/runway">Runway</a><a href="/lyceum">Lyceum</a><a href="/lets-go">Let's Go</a><a href="/parcel">Parcel</a><a href="/about">About</a></nav>
   <div class="right"><button class="theme" type="button" aria-label="Switch between light and dark"><svg class="moon" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 10.500A6.500 6.500 0 0 1 7.500 3 6.500 6.500 0 1 0 15 10.500z"/></svg><svg class="sun" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="9" cy="9" r="3.200"/><path d="M9 1.500v1.800M9 14.700v1.800M1.500 9h1.800M14.700 9h1.800M3.700 3.700l1.300 1.300M13 13l1.300 1.300M3.700 14.300 5 13M13 5l1.300-1.300"/></svg></button></div>
 </div></header>
 
 <main>
-  <section class="wrap hero alone">
+  <section class="wrap hero">
     <img class="icon" src="/pulse/icon.png" alt="Pulse app icon" width="68" height="68">
     <h1>Your health, in one place.</h1>
     <p class="lede">Pulse keeps your workouts, meals, sleep and habits together, with an AI coach that knows all of it. For iPhone.</p>
     <span class="soon">Coming soon</span>
+  </section>
+
+  <div class="wrap">
+    <figure class="stage" data-reveal>
+      <div class="phone" role="img" aria-label="Pulse's Today screen: sleep, steps and protein, today's workout, and a note from the coach" style="--scr:#040405;--ink:#FFFFFF;--dim:#9A9AA0;--card:#17171A;--hue:#FAC79E">
+        <div class="scr" aria-hidden="true">
+          <span class="p-eye">Tuesday</span>
+          <div class="p-big">Today</div>
+          <div class="p-tiles">
+            <div class="p-card"><span class="p-eye">Sleep</span><b>7h 42m</b></div>
+            <div class="p-card"><span class="p-eye">Steps</span><b>8,214</b></div>
+            <div class="p-card"><span class="p-eye">Protein</span><b>96 g</b></div>
+          </div>
+          <div class="p-card"><span class="p-eye">Workout</span><b>Push day</b><span class="p-dim">Bench, incline press, dips and two more</span></div>
+          <div class="p-card"><span class="p-eye p-hue">Coach</span><span>You slept 40 minutes less than usual. Keep today's lifts and skip the extra set.</span></div>
+          <div class="p-card"><div class="p-row"><span>Dinner</span><span class="p-dim">Chicken, rice, greens</span></div></div>
+        </div>
+      </div>
+      <figcaption>Pulse, with sample data</figcaption>
+    </figure>
+  </div>
+
+  <section class="wrap three" aria-label="What Pulse does">
+    <div class="card" data-reveal><h2>Everything together</h2><p>Log a workout or a meal in a few taps. Sleep, steps and heart rate come in from Apple Health, so nothing is typed twice.</p></div><div class="card" data-reveal><h2>A coach that knows you</h2><p>Ask anything about your own numbers and get a straight answer, drawn from everything you've logged.</p></div><div class="card" data-reveal><h2>On your wrist</h2><p>On Apple Watch, Pulse counts your reps and times your rest, so the phone can stay in your bag.</p></div>
   </section>
 </main>
 
