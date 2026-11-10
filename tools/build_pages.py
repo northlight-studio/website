@@ -120,10 +120,10 @@ PAGES = [
   <section class="wrap works" aria-labelledby="works">
     <h2 id="works" data-reveal>In the works</h2>
     <div class="apps four">
-    {card("runway", "Runway", "For iPhone", "What you earn, spend and invest in one place, and your next good move with money.", "#070A12", small=True)}
+    {card("runway", "Runway", "For iPhone", "What you earn, spend and invest in one place, and your next good move with money.", "#0B0C10", small=True)}
     {card("lyceum", "Lyceum", "For iPhone", "A museum of books: halls to wander, short courses, and the lines worth keeping.", "#0B0F0E", small=True)}
     {card("lets-go", "Let's Go", "For iPhone", "A live map of what's on tonight within a walk, and the one thing worth going to.", "#1A2347", small=True)}
-    {card("parcel", "Parcel", "For the web and iPhone", "Describe the home you want. See it designed, checked and priced.", "#1F292E", small=True)}
+    {card("parcel", "Parcel", "For the web and iPhone", "Describe the home you want. See it designed, checked and priced.", "#3640AE", small=True)}
     </div>
   </section>
 
