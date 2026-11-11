@@ -122,7 +122,7 @@ PAGES = [
     <div class="apps four">
     {card("runway", "Runway", "For iPhone", "What you earn, spend and invest in one place, and your next good move with money.", "#00152E", small=True)}
     {card("cosmopolis", "Cosmopolis", "For iPhone", "A city of learning: the great books first, then math, physics and more.", "#12261B", small=True)}
-    {card("lets-go", "Let's Go", "For iPhone", "A live map of what's on tonight within a walk, and the one thing worth going to.", "#012516", small=True)}
+    {card("lets-go", "Let's Go", "For iPhone", "A live map of what's on tonight within a walk, and the one thing worth going to.", "#FFFFFF", small=True)}
     {card("parcel", "Parcel", "For the web and iPhone", "Describe the home you want. See it designed, checked and priced.", "#17263A", small=True)}
     </div>
   </section>
