@@ -12,7 +12,7 @@ import pictures
 
 SITE = Path(__file__).resolve().parent.parent / "site"
 
-TABS = [("Home", "/"), ("Pulse", "/pulse"), ("Barricade", "/barricade"), ("Runway", "/runway"), ("Lyceum", "/lyceum"),
+TABS = [("Home", "/"), ("Pulse", "/pulse"), ("Barricade", "/barricade"), ("Runway", "/runway"), ("Cosmopolis", "/cosmopolis"),
         ("Let's Go", "/lets-go"), ("Parcel", "/parcel"), ("About", "/about")]
 
 ICONS = """<svg class="defs" aria-hidden="true"><defs>
@@ -121,7 +121,7 @@ PAGES = [
     <h2 id="works" data-reveal>In the works</h2>
     <div class="apps four">
     {card("runway", "Runway", "For iPhone", "What you earn, spend and invest in one place, and your next good move with money.", "#0B0C10", small=True)}
-    {card("lyceum", "Lyceum", "For iPhone", "A museum of books: halls to wander, short courses, and the lines worth keeping.", "#0B0F0E", small=True)}
+    {card("cosmopolis", "Cosmopolis", "For iPhone", "A city of learning: the great books first, then math, physics and more.", "#0B0F0E", small=True)}
     {card("lets-go", "Let's Go", "For iPhone", "A live map of what's on tonight within a walk, and the one thing worth going to.", "#1A2347", small=True)}
     {card("parcel", "Parcel", "For the web and iPhone", "Describe the home you want. See it designed, checked and priced.", "#3640AE", small=True)}
     </div>
@@ -191,14 +191,14 @@ PAGES = [
                 ("Head for the job you want", "Lay out the path to the job you want, and see what each step along it does to your net worth."),
             ], fine="Runway only reads your accounts. It can't move your money."),
 
-    project("lyceum", "Lyceum", "Lyceum · a museum of books",
-            "Lyceum is a museum of books: walk the halls of every literary age, take short courses, and keep the lines that stay with you. In the works for iPhone.",
-            "A museum of books.",
-            "Walk the halls of every literary age, take short courses with an AI guide, read the great books with other people, and keep the lines that stay with you. For iPhone.",
-            "In the works", pictures.LYCEUM, [
-                ("Halls to wander", "Each age of literature has a hall of its own: the Russians, the Gothic, the Romantics. Start anywhere."),
-                ("Short courses", "Lessons you can finish in one sitting, with a guide to ask when something doesn't land."),
-                ("Lines worth keeping", "Collect the sentences that stay with you, and hang them on a wall of your own."),
+    project("cosmopolis", "Cosmopolis", "Cosmopolis · a city of learning",
+            "Cosmopolis is a city of learning: the great books first, then math, physics, chemistry and more, with short courses and a guide to ask. In the works for iPhone.",
+            "A city of learning.",
+            "Start with the great books, then math, physics, chemistry and more. Short courses, a guide to ask when something doesn't land, and other people to learn with. For iPhone.",
+            "In the works", pictures.COSMOPOLIS, [
+                ("Every subject, one city", "Literature has its halls already, and statistics its first lessons. Physics, chemistry and more are on the way."),
+                ("Short courses", "Lessons you can finish in one sitting, out loud on a walk if you like, with a guide to ask when something doesn't land."),
+                ("Learn with people", "Read alongside friends, or sit at a table with Nietzsche, Dostoevsky and Camus and argue it out."),
             ]),
 
     project("lets-go", "Let's Go", "Let's Go · what's on tonight, a walk away",
@@ -249,7 +249,7 @@ PAGES = [
     {line("pulse", "Pulse", "Your health in one place, with an AI coach. For iPhone, coming soon.")}
     <a class="line" href="/barricade" data-reveal><span class="icon barricade small"><svg width="26" height="21" aria-hidden="true"><use href="#barricade"/></svg></span><span><b>Barricade</b><span>Block the sites that pull you back. For Mac.</span></span><span class="go">→</span></a>
     {line("runway", "Runway", "Grow what you're worth. For iPhone, in the works.")}
-    {line("lyceum", "Lyceum", "A museum of books. For iPhone, in the works.")}
+    {line("cosmopolis", "Cosmopolis", "A city of learning. For iPhone, in the works.")}
     {line("lets-go", "Let's Go", "What's on tonight, a walk away. For iPhone, in the works.")}
     {line("parcel", "Parcel", "From an idea to a house you can build. In the works.")}
   </section>"""),
