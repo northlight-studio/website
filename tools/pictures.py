@@ -66,7 +66,7 @@ RUNWAY = phone("Runway", "Runway's Home screen: net worth and its line over the 
           <div class="p-card"><span class="p-eye" style="color:#FAC79E">A move worth making</span><span>$4,100 is sitting in checking. In savings it would earn about $14 a month.</span></div>
           <div class="p-card"><div class="p-row"><span>This week</span><span class="p-dim">$212 of $350</span></div></div>""")
 
-LYCEUM = phone("Lyceum", "Lyceum's Atrium: the quote of the day, and the wings of the museum as arched doors",
+COSMOPOLIS = phone("Cosmopolis", "Cosmopolis's Atrium: the quote of the day, and the subjects as arched doors",
                "--scr:#0B0F0E;--ink:#EEEAE2;--dim:#B8B2A5;--card:#121816;--hue:#CDAA63", """          <span class="p-eye">Good evening</span>
           <div class="p-serif">I love the sticky little leaves as they open in spring.</div>
           <span class="p-dim">Dostoevsky, The Brothers Karamazov</span>

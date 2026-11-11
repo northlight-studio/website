@@ -9,7 +9,7 @@ The Northlight Studio website: the studio home page and a page for each project.
 | Barricade download, `/barricade/download` | `site/barricade/download/index.html` (holding page until the signed installer exists) |
 | Pulse, `/pulse` | `site/pulse/index.html` (coming soon) |
 | Runway, `/runway` | `site/runway/index.html` (in the works) |
-| Lyceum, `/lyceum` | `site/lyceum/index.html` (in the works) |
+| Cosmopolis, `/cosmopolis` | `site/cosmopolis/index.html` (in the works; `/lyceum` redirects here) |
 | Let's Go, `/lets-go` | `site/lets-go/index.html` (in the works) |
 | Parcel, `/parcel` | `site/parcel/index.html` (in the works) |
 | About, `/about` | `site/about/index.html` |

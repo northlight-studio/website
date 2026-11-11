@@ -1,6 +1,6 @@
 # Northlight Studio website
 
-The Northlight Studio website: the studio home page and a page for each project (Pulse, Barricade, Runway, Lyceum, Let's Go, Parcel). See README.md for what exists. Same owner and conventions as Pulse, Let's Go and Lyceum.
+The Northlight Studio website: the studio home page and a page for each project (Pulse, Barricade, Runway, Cosmopolis, Let's Go, Parcel). See README.md for what exists. Same owner and conventions as Pulse, Let's Go and Cosmopolis.
 
 ## Stack
 - Plain HTML and CSS in `site/`, no build step on Vercel. Vercel serves `site/` as-is (`vercel.json`: clean URLs, so `/barricade` is `site/barricade/index.html`).
