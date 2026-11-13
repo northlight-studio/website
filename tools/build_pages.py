@@ -161,13 +161,15 @@ PAGES = [
     </ol>
   </section>""", download=True),
 
-    page("barricade/download/index.html", "Download Barricade", "Barricade's installer for Mac is almost ready.", "Barricade",
-         """  <!-- Holding page until the signed, notarized installer exists. Then vercel.json redirects
-       /barricade/download straight to the file and this page goes. -->
+    page("barricade/download/index.html", "Download Barricade", "Barricade's download for Mac is coming soon.", "Barricade",
+         """  <!-- Holding page until a release carries the signed, notarized Barricade.dmg. Then vercel.json
+       redirects /barricade/download to
+       https://github.com/northlight-studio/barricade-releases/releases/latest/download/Barricade.dmg
+       and this page goes. -->
   <section class="wrap hero alone">
     <span class="icon barricade"><svg width="38" height="30" aria-hidden="true"><use href="#barricade"/></svg></span>
-    <h1>The download is almost ready.</h1>
-    <p class="lede">Apple is checking Barricade's installer, so your Mac knows it's safe to open. This page becomes the download as soon as that's done.</p>
+    <h1>The Mac download is coming soon.</h1>
+    <p class="lede">Barricade can't be downloaded yet. Before a Mac will open it, it has to be signed and checked by Apple, and that's the step still to do. This page becomes the download as soon as it's done.</p>
     <a class="button quiet" href="/barricade">Back to Barricade</a>
   </section>""", index=False),
 
