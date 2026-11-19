@@ -12,7 +12,7 @@ import pictures
 
 SITE = Path(__file__).resolve().parent.parent / "site"
 
-TABS = [("Home", "/"), ("Pulse", "/pulse"), ("Barricade", "/barricade"), ("Runway", "/runway"), ("Cosmopolis", "/cosmopolis"),
+TABS = [("Home", "/"), ("Mochi", "/mochi"), ("Barricade", "/barricade"), ("Runway", "/runway"), ("Cosmopolis", "/cosmopolis"),
         ("Let's Go", "/lets-go"), ("Parcel", "/parcel"), ("About", "/about")]
 
 ICONS = """<svg class="defs" aria-hidden="true"><defs>
@@ -23,18 +23,29 @@ ICONS = """<svg class="defs" aria-hidden="true"><defs>
 
 THEME = """<button class="theme" type="button" aria-label="Switch between light and dark"><svg class="moon" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 10.500A6.500 6.500 0 0 1 7.500 3 6.500 6.500 0 1 0 15 10.500z"/></svg><svg class="sun" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="9" cy="9" r="3.200"/><path d="M9 1.500v1.800M9 14.700v1.800M1.500 9h1.800M14.700 9h1.800M3.700 3.700l1.300 1.300M13 13l1.300 1.300M3.700 14.300 5 13M13 5l1.300-1.300"/></svg></button>"""
 
+APP_STORE = "https://apps.apple.com/app/id6827337496"
+
+# Mochi is on the App Store: a button to it, and on a bigger screen a code to scan with an iPhone.
+GET_MOCHI = f"""<div class="get-app">
+      <a class="button" href="{APP_STORE}">Get Mochi on the App Store</a>
+      <a class="qr" href="{APP_STORE}"><img src="/mochi/app-store-qr.svg" alt="A code to scan with your iPhone's camera to open Mochi on the App Store" width="96" height="96"><span>App Store</span></a>
+    </div>
+    <span class="fine">For iPhone, with an Apple Watch app</span>"""
+
 DOWNLOAD = '<a class="button" href="/barricade/download"><svg width="14" height="16" aria-hidden="true"><use href="#down"/></svg>Download for Mac</a>'
 
 
-def project(slug, name, title, description, headline, lede, status, picture, cards, fine=""):
-    """A project's page: its icon, what it does, a picture of it, and three things it does for you."""
+def project(slug, name, title, description, headline, lede, status, picture, cards, fine="", get=""):
+    """A project's page: its icon, what it does, a picture of it, and three things it does for you.
+    `get` replaces the status pill once the app is out: how to get it."""
     three = "".join(f'<div class="card" data-reveal><h2>{head}</h2><p>{text}</p></div>' for head, text in cards)
     note = f'\n    <span class="fine">{fine}</span>' if fine else ""
+    status = get or f'<span class="soon">{status}</span>'
     return page(f"{slug}/index.html", title, description, name, f"""  <section class="wrap hero">
     <img class="icon" src="/{slug}/icon.png" alt="{name} app icon" width="68" height="68">
     <h1>{headline}</h1>
     <p class="lede">{lede}</p>
-    <span class="soon">{status}</span>{note}
+    {status}{note}
   </section>
 
   <div class="wrap">
@@ -110,7 +121,7 @@ PAGES = [
   </section>
 
   <section class="wrap apps" aria-label="Apps">
-    {card("pulse", "Pulse", "For iPhone · coming soon", "Your workouts, meals, sleep and habits in one place, with an AI coach that knows all of it.", "#0A120E")}
+    {card("mochi", "Mochi", "For iPhone · on the App Store", "An AI health coach that knows your sleep, workouts, meals and habits, and helps you get where you're going.", "#0A120E")}
     <a class="product" href="/barricade" data-reveal>
       <div class="pic barricade"><svg width="120" height="96" aria-hidden="true"><use href="#barricade"/></svg></div>
       <div class="text"><span class="for">For Mac</span><h2>Barricade</h2><p>Block the sites that pull you back, in every browser. It stays on through the nights you wish it wouldn't.</p><span class="more">See Barricade →</span></div>
@@ -173,15 +184,15 @@ PAGES = [
     <a class="button quiet" href="/barricade">Back to Barricade</a>
   </section>""", index=False),
 
-    project("pulse", "Pulse", "Pulse · health and fitness with an AI coach",
-            "Pulse keeps your workouts, meals, sleep and habits in one place, with an AI coach that knows all of it. Coming soon for iPhone.",
-            "Your health, in one place.",
-            "Pulse keeps your workouts, meals, sleep and habits together, with an AI coach that knows all of it. For iPhone.",
-            "Coming soon", pictures.PULSE, [
-                ("Everything together", "Log a workout or a meal in a few taps. Sleep, steps and heart rate come in from Apple Health, so nothing is typed twice."),
-                ("A coach that knows you", "Ask anything about your own numbers and get a straight answer, drawn from everything you've logged."),
-                ("On your wrist", "On Apple Watch, Pulse counts your reps and times your rest, so the phone can stay in your bag."),
-            ]),
+    project("mochi", "Mochi", "Mochi: Health Coach · an AI coach that knows you",
+            "Mochi is an AI health coach that knows your sleep, workouts, meals and habits, and helps you get where you're going. On the App Store for iPhone.",
+            "A health coach that knows you.",
+            "Mochi keeps your sleep, workouts, meals and habits in one place, and coaches you from all of it, one day at a time.",
+            "", pictures.MOCHI, [
+                ("Ask anything", "Why you're tired, whether your training is paying off, what to eat after a long run. Mochi answers from your own numbers, with a chart and a clear next step."),
+                ("Less bookkeeping", "Snap a photo of a meal and Mochi works out what's in it. Sleep, steps and heart rate come in from Apple Health, so nothing is typed twice."),
+                ("On your wrist", "On Apple Watch, Mochi counts your reps and times your rest, so the phone can stay in your bag."),
+            ], get=GET_MOCHI),
 
     project("runway", "Runway", "Runway · grow what you're worth",
             "Runway shows what you earn, spend and invest in one place, and works out your next good move with you. In the works for iPhone.",
@@ -248,7 +259,7 @@ PAGES = [
 
   <section class="wrap list" aria-labelledby="apps">
     <h2 id="apps" data-reveal>The apps</h2>
-    {line("pulse", "Pulse", "Your health in one place, with an AI coach. For iPhone, coming soon.")}
+    {line("mochi", "Mochi", "A health coach that knows you. For iPhone, on the App Store.")}
     <a class="line" href="/barricade" data-reveal><span class="icon barricade small"><svg width="26" height="21" aria-hidden="true"><use href="#barricade"/></svg></span><span><b>Barricade</b><span>Block the sites that pull you back. For Mac.</span></span><span class="go">→</span></a>
     {line("runway", "Runway", "Grow what you're worth. For iPhone, in the works.")}
     {line("cosmopolis", "Cosmopolis", "A city of learning. For iPhone, in the works.")}
