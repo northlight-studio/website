@@ -30,7 +30,7 @@ GET_MOCHI = f"""<div class="get-app">
       <a class="button" href="{APP_STORE}">Get Mochi on the App Store</a>
       <a class="qr" href="{APP_STORE}"><img src="/mochi/app-store-qr.svg" alt="A code to scan with your iPhone's camera to open Mochi on the App Store" width="96" height="96"><span>App Store</span></a>
     </div>
-    <span class="fine">Free for iPhone, with an Apple Watch app</span>"""
+    <span class="fine">For iPhone, with an Apple Watch app</span>"""
 
 DOWNLOAD = '<a class="button" href="/barricade/download"><svg width="14" height="16" aria-hidden="true"><use href="#down"/></svg>Download for Mac</a>'
 
@@ -185,7 +185,7 @@ PAGES = [
   </section>""", index=False),
 
     project("mochi", "Mochi", "Mochi: Health Coach · an AI coach that knows you",
-            "Mochi is an AI health coach that knows your sleep, workouts, meals and habits, and helps you get where you're going. Free on the App Store for iPhone.",
+            "Mochi is an AI health coach that knows your sleep, workouts, meals and habits, and helps you get where you're going. On the App Store for iPhone.",
             "A health coach that knows you.",
             "Mochi keeps your sleep, workouts, meals and habits in one place, and coaches you from all of it, one day at a time.",
             "", pictures.MOCHI, [
