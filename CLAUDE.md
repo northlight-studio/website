@@ -1,6 +1,6 @@
 # Northlight Studio website
 
-The Northlight Studio website: the studio home page and a page for each project (Pulse, Barricade, Runway, Cosmopolis, Let's Go, Parcel). See README.md for what exists. Same owner and conventions as Pulse, Let's Go and Cosmopolis.
+The Northlight Studio website: the studio home page and a page for each project (Mochi, Barricade, Runway, Cosmopolis, Let's Go, Parcel). See README.md for what exists. Same owner and conventions as Pulse, Let's Go and Cosmopolis.
 
 ## Stack
 - Plain HTML and CSS in `site/`, no build step on Vercel. Vercel serves `site/` as-is (`vercel.json`: clean URLs, so `/barricade` is `site/barricade/index.html`).
@@ -10,9 +10,9 @@ The Northlight Studio website: the studio home page and a page for each project 
 - The public name is **Northlight** (not "Northlight Studio") everywhere on the site. Northlight is one person: never write "we", "our" or "us", and never call it a "small studio". Say "Northlight makes…" instead.
 - The eye is big only in the browser tab (`eye.svg`, with PNG and `.ico` copies for browsers that want them). On the pages it stays a small mark beside the name; don't draw it large.
 - Scrolling: elements marked `data-reveal` ease up into place as they arrive (`site/reveal.js`). Only what starts below the screen animates, and nothing is hidden when scripts are off or Reduce Motion is on.
-- Icons: the studio's mark (header and `eye.svg`, with PNG and `.ico` copies for browsers that want them) is the eye, Pulse's original app icon, drawn as an SVG in `tools/build_pages.py`. Pulse's own icon is its current app icon, Mochi in headphones (`site/pulse/icon.png`, from Pulse's `AppIcon.appiconset`).
+- Icons: the studio's mark (header and `eye.svg`, with PNG and `.ico` copies for browsers that want them) is the eye, Pulse's original app icon, drawn as an SVG in `tools/build_pages.py`. Mochi's own icon is its current app icon, Mochi in headphones (`site/mochi/icon.png`, from the Pulse repo's `AppIcon.appiconset`). Mochi is the app the Pulse repo ships, on the App Store as Mochi: Health Coach; its page links there and shows a QR code to it (`site/mochi/app-store-qr.svg`).
 - The tabs take a row of their own under 1000px and scroll sideways on a phone; `site/nav.js` brings the current tab into view.
-- Each project gets a folder and a tab. Its icon is its real app icon at 400px (`site/<project>/icon.png`). The home page leads with the two furthest along (Pulse, Barricade) and lists the rest under "In the works"; move a project up when it ships. Barricade's download link is `/barricade/download`; it's a holding page until the signed, notarized installer exists, then a redirect in `vercel.json` to the file.
+- Each project gets a folder and a tab. Its icon is its real app icon at 400px (`site/<project>/icon.png`). The home page leads with the two furthest along (Mochi, Barricade) and lists the rest under "In the works"; move a project up when it ships. Barricade's download link is `/barricade/download`; it's a holding page until the signed, notarized installer exists, then a redirect in `vercel.json` to the file.
 - `tests/check_site.py` (run by `ci.sh`) checks every page's structure and metadata and that every internal link resolves.
 
 ## Rules

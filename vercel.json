@@ -27,6 +27,11 @@
       "source": "/lyceum",
       "destination": "/cosmopolis",
       "permanent": true
+    },
+    {
+      "source": "/pulse",
+      "destination": "/mochi",
+      "permanent": true
     }
   ]
 }

@@ -41,7 +41,7 @@ def phone(app, label, colours, screen):
 
 
 # Pulse and Runway share the Midnight Bronze look: near-black, peach for what's yours, green for good news.
-PULSE = phone("Pulse", "Pulse's Today screen: sleep, steps and protein, today's workout, and a note from the coach",
+MOCHI = phone("Mochi", "Mochi's Today screen: sleep, steps and protein, today's workout, and a note from the coach",
               "--scr:#040405;--ink:#FFFFFF;--dim:#9A9AA0;--card:#17171A;--hue:#FAC79E", """          <span class="p-eye">Tuesday</span>
           <div class="p-big">Today</div>
           <div class="p-tiles">
